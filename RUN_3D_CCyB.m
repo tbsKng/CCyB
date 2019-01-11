@@ -19,8 +19,8 @@ save  3D_param
 SS_eq
 phi_Fs_base=phi_F;
 phi_Hs_base=phi_H;
-phi_Fs = 0.09;
-phi_Hs = rw*phi_Fs;
+%phi_Fs = 0.09;
+%phi_Hs = rw*phi_Fs;
 
 save  3D_param
 
@@ -81,9 +81,13 @@ save 3D_param
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% SIMULATION: 10% CR, no CCyB %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-for k = 1:1 %
-    
 
+phi_Fs_vec = [0.08 0.09 0.1 0.07]
+
+for k = 1:length(phi_Fs_vec) %
+    
+    phi_Fs = phi_Fs_vec(k);
+    phi_Hs = rw*phi_Fs;
     
     %sigma_epsiSe_news   = -log(ESe_tresh1)*100;
     %sigma_epsiSm_news   = -log(ESm_tresh1)*100;
@@ -107,7 +111,7 @@ for k = 1:1 %
     rhoSH   = 0.9;
     ind_totRisk =1;
     
-    save('3D_param','ind_totRisk','rhoSe','rhoSm','rhoSF','rhoSH','rhoA','sigma_epsiA','sigma_epsiSe','sigma_epsiSm','sigma_epsiSF','sigma_epsiSe_news','sigma_epsiSm_news','sigma_epsiSF_news','-append')
+    save('3D_param','phi_Fs','phi_Hs','ind_totRisk','rhoSe','rhoSm','rhoSF','rhoSH','rhoA','sigma_epsiA','sigma_epsiSe','sigma_epsiSm','sigma_epsiSF','sigma_epsiSe_news','sigma_epsiSm_news','sigma_epsiSF_news','-append')
     
     % 4pSimu simulates for all variables the responses to the shock (shock to all risk rates and bank risk)
     dynare ThreeDAdj_RD_stoch_4pSimu noclearall nostrict
@@ -407,4 +411,5 @@ varnames9=char('GDP','Consumption','Business Investment','Housing Investment','P
 
 RUN_CHART_Policy
 
+RUN_CHART_CR
 %close all
