@@ -13,6 +13,7 @@ hh=suptitle({'10% Risk Shock to All Sectors'});
 P = get(hh,'Position');
 set(hh,'Position',[P(1) P(2)+0.02 P(3)]);
 set(hh,'FontSize',16);
+
 for zr = 1:size(data_Se_surprise{1},2)
     sh=subplot(4,5,zr);
     
@@ -152,7 +153,7 @@ for zr = 1:size(data_SmSH_surprise{1},2)
     line([1 16],[0 0],'color',[0 0 0]); %axis tight;
     
     if zr==17
-        l={'Sectoral CCyB w/ NFC CR risk weight adj.','Benchmark','Corp. Sectoral CCyB only','Sectoral both loans.'};
+        l={'Sectoral CCyB w/ NFC CR risk weight adj.','Benchmark','Mort. Sectoral CCyB only','Sectoral both loans.'};
         lh=legend(l,'Orientation','horizontal');
         sp=get(sh,'position');
         set(lh,'position',[sp(1),sp(2)-.12,sp(3),.1]);
